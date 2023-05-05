@@ -1,0 +1,52 @@
+Play game button on the first page with an 'onclick' event listener
+
+set variable needed for the game
+- board (4 by 4) // 2d array of 4 by 4
+- winner will be the value of 2048 or the 11th combination of tiles
+
+
+
+functions
+- generateTile()
+  - create 2 random tiles with the value of "2" at the start of the game 
+  - create 1 random tile in any open spot on the board after a move is completed
+  - Use Math.floor(Math.random) to select a random tile location
+
+- combineColumn()
+  - combine the value of 2 similar tiles within the same column while not combining all tiles with the same value 
+
+-combineRow()
+  - same process of combineColumn() but horizontal
+
+-shiftRight()
+  - movement will be set to arrow keys so event listeners will be made for each arrow keys 
+  - invoke combineColumn
+    
+-shiftLeft()
+  - event listener for arrow key
+  - invoke combineColumn
+
+-shiftUp()
+  - event listener for arrow key
+  - invoke combineRow
+
+-shiftDown()
+  - event listener for arrow key  
+  - invoke combineRow
+
+checkWinner()
+  - if value of a single tile equals "2048" return winner 
+  - OR after 11 combinations, declare winner
+
+declareWinner()
+  - add text to indicate a win 
+
+addColor()
+  - each value will have a unique color 
+  - uniqueValue set to color
+
+restartGame()
+  - add a button that renders the board with 2 randomly generated tiles 
+
+checkForEndGame()
+  - check to see if all tiles are taken and no moves are availible

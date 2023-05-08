@@ -15,18 +15,17 @@ h1 {
 }
 
 #board {
-  display: grid;
-  grid-template-columns: repeat(2, 10vmin);
-  grid-template-rows: repeat(2, 10vmin);
-  gap: .5vmin;
-  background-color: #e9edda;
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 400px;
+  background-color: aqua;
 }
 
 #board > div {
-  background-color: whitesmoke;
-  border: .5vmin solid grey;
+  width: 100px;
+  height: 100px;
+  background-color: crimson;
+  text-align: center;
 }
 
-button {
-  margin: 2vmin;
-}

@@ -1,21 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-  let board = [0, 0, 0, 0]
+  const boardDisplay = document.querySelector('#board')
 
-  const width = 2
+  const width = 4
+  let tiles = []
 
-  function createBoard() {
+  // Create game board
+  const createBoard = () => {
     for (let i = 0; i < width * width; i++) {
-      board = document.querySelectorAll('tile')
+      tile = document.createElement('div')
+      tile.innerHTML = 0
+      boardDisplay.appendChild(tile)
+      tiles.push(tile)
     }
-    generateTile()
-    generateTile()
   }
   createBoard()
-
-  function generateTile() {
-    random = Math.floor(Math.random() * board.length)
-    if (board[random] === 0) {
-      board[random].innerHTML === 2
-    }
-  }
 })

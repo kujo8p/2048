@@ -7,9 +7,69 @@ document.addEventListener('DOMContentLoaded', () => {
   let tilesArr = []
   // console.log(tiles)
 
-  // Event Listeners
-
-  // Filter rows to find values then combine
+  const combineRows = () => {
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < width; j++) {
+        if (tilesArr[i][j] === tilesArr[i + 1][j + 1].innerHTML) {
+          tilesArr[i + 1][j + 1] = 0
+        }
+      }
+    }
+  }
+  const combineColumn = () => {
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < width; i++) {
+        if (
+          tilesArr[i][j].innerHTML === tilesArr[i + width][j + width].innerHTML
+        ) {
+          tilesArr[i + width][j + width].innerHTML = 0
+        }
+      }
+    }
+  }
+  // Filter rows right to find values then combine
+  const combineRight = () => {
+    for (let i = 0; i < width; i++) {
+      let total = []
+      let subTotal = []
+      for (let j = 0; j < width; j++) {
+        if (tilesArr[i][j] !== 0) {
+          total.push(tilesArr[i][j])
+        }
+      }
+      if (total.length === 1) {
+        tilesArr[i] = [0, 0, 0, total[0]]
+      } else {
+        for (let k = 0; k < total.length; k++) {
+          if (total[k - 1] === total[k]) {
+            subTotal.push(total[k] + total[k])
+          } else if (k === 1) {
+            subTotal.push(total[k - 1])
+          } else if (k === 2 && total[k] === total[k - 1]) {
+            subTotal.push(total[k] + total[k])
+            if (total.length > 3) {
+              subTotal.push(total[k + 1])
+            }
+          }
+        }
+      }
+      // console.log(subTotal)
+      if (subTotal.length) {
+        for (let o = 0; o < tilesArr[i].length; o++) {
+          if (subTotal[o] !== undefined) {
+            // console.log(subTotal[o])
+            tilesArr[i][o] = subTotal[o]
+            // console.log(tilesArr)
+          } else {
+            tilesArr[i][o] = 0
+          }
+          tilesArr[i].reverse()
+        }
+      }
+      console.log(tilesArr[i])
+    }
+  }
+  // Filter rows left to find values then combine
   const combineLeft = () => {
     // Iterate over every index of each array
     // Inside of this nested for loop
@@ -19,18 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
       let subTotal = []
       for (let j = 0; j < width; j++) {
         if (tilesArr[i][j] !== 0) {
-          console.log('pushing', tilesArr[i][j])
+          // console.log('pushing', tilesArr[i][j])
           total.push(tilesArr[i][j])
         }
       }
-      console.log('totalLength', total.length)
+      // console.log('totalLength', total.length)
       // if (total.length === 0) return
       if (total.length === 1) {
         tilesArr[i] = [total[0], 0, 0, 0]
       } else {
         for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
-            console.log('same', total[k] + total[k])
+            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
             console.log('k===1', total[k - 1])
@@ -43,20 +103,19 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      console.log(subTotal)
+      // console.log(subTotal)
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
-            console.log(subTotal[o])
+            // console.log(subTotal[o])
             tilesArr[i][o] = subTotal[o]
-            console.log(tilesArr)
+            // console.log(tilesArr)
           } else {
             tilesArr[i][o] = 0
           }
         }
       }
-      // let = total = tilesArr[0].filter((tileVal) => tileVal !== 0)
-      // total1.reduce((acc, tileVal) => {
+
       console.log(tilesArr[i])
     }
   }
@@ -67,26 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Check for win condition, loss, or generate new tile
   const checkGameOver = () => {
-    let winner = tiles.filter((tile) => tile == 2048)
+    let winner = tilesArr.filter((tile) => tile == 2048)
     for (let i = 0; i < width; i++) {
       if (winner === true) {
         resultMess.innerHTML = 'You Win!'
       }
     }
   }
-
-  const moves = (e) => {
-    if (e.keyCode === 37) {
-      combineLeft()
-    } else if (e.keyCode === 38) {
-      combineUp()
-    } else if (e.keyCode === 39) {
-      combineRight()
-    } else if (e.keyCode === 40) {
-      combineDown()
-    }
-  }
-  document.addEventListener('keydown', moves)
+  // console.log(tilesArr[i][j])
+  // Event Listeners
 
   // Generate number tiles with value "2"
   const generateTile = () => {
@@ -99,6 +147,27 @@ document.addEventListener('DOMContentLoaded', () => {
     } else generateTile()
   }
 
+  const moves = (e) => {
+    if (e.keyCode === 37) {
+      combineLeft()
+      renderBoard()
+      generateTile()
+      renderBoard()
+    } else if (e.keyCode === 38) {
+      combineUp()
+      renderBoard()
+      generateTile()
+      renderBoard()
+    } else if (e.keyCode === 39) {
+      combineRight()
+      renderBoard()
+      generateTile()
+      renderBoard()
+    } else if (e.keyCode === 40) {
+      combineDown()
+    }
+  }
+  document.addEventListener('keydown', moves)
   // Create game board
   const createBoard = () => {
     // console.log(tiles)
@@ -121,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
         tiles[i][j].innerHTML = tilesArr[i][j]
+        // console.log(tiles[i][j])
       }
     }
   }
@@ -132,8 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBoard()
   generateTile()
   generateTile()
-  console.log(tilesArr)
   renderBoard()
-  combineLeft()
-  renderBoard()
+  // console.log(tilesArr)
+  // renderBoard()
+  // combineLeft()
 })

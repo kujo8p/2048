@@ -25,8 +25,11 @@ h1 {
 #board > div {
   width: 100px;
   height: 100px;
-  background-color: crimson;
+  background-color: whitesmoke;
   text-align: center;
-  font-size: 50px;
+  font-size: 60px;
 }
 
+button {
+  margin: 2vmin;
+}

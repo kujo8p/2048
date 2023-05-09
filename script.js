@@ -8,7 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
   // console.log(tiles)
 
   // Event Listeners
+  document.addEventListener('keydown', moves)
 
+  const moves = (e) => {
+    if (e.keyCode === 37) {
+      combineLeft()
+    } else if (e.keyCode === 38) {
+      combineUp()
+    } else if (e.keyCode === 39) {
+      combineRight()
+    } else if (e.keyCode === 40) {
+      combineDown()
+    }
+  }
   // Filter rows to find values then combine
   const combineLeft = () => {
     // Iterate over every index of each array

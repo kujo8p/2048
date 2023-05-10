@@ -5,33 +5,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 4
   let tiles = []
   let tilesArr = []
-  // console.log(tiles)
 
-  const combineRows = () => {
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < width; j++) {
-        if (tilesArr[i][j] === tilesArr[i + 1][j + 1].innerHTML) {
-          tilesArr[i + 1][j + 1] = 0
-        }
-      }
-    }
-  }
-  const combineColumn = () => {
-    for (let i = 0; i < width; i++) {
-      for (let j = 0; j < width; i++) {
-        if (
-          tilesArr[i][j].innerHTML === tilesArr[i + width][j + width].innerHTML
-        ) {
-          tilesArr[i + width][j + width].innerHTML = 0
+  const combineUp = () => {
+    let nonZeroVal = []
+    for (i = 1; i < width; i++) {
+      for (j = 0; j < width; j++) {
+        if (tilesArr[i][j] !== 0) {
+          for (k = i; k >= 0; k--) {
+            if (tilesArr[k][j] === tilesArr[i][j]) {
+              console.log(tilesArr[k][j])
+              tilesArr[k][j] += tilesArr[k][j]
+            }
+          }
         }
       }
     }
   }
   // Filter rows right to find values then combine
   const combineRight = () => {
+    let total = []
+    let subTotal = []
+
     for (let i = 0; i < width; i++) {
-      let total = []
-      let subTotal = []
       for (let j = 0; j < width; j++) {
         if (tilesArr[i][j] !== 0) {
           total.push(tilesArr[i][j])
@@ -53,11 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      // console.log(subTotal)
+
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
-            // console.log(subTotal[o])
             tilesArr[i][o] = subTotal[o]
             // console.log(tilesArr)
           } else {
@@ -79,12 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let subTotal = []
       for (let j = 0; j < width; j++) {
         if (tilesArr[i][j] !== 0) {
-          // console.log('pushing', tilesArr[i][j])
           total.push(tilesArr[i][j])
         }
       }
-      // console.log('totalLength', total.length)
-      // if (total.length === 0) return
+
       if (total.length === 1) {
         tilesArr[i] = [total[0], 0, 0, 0]
       } else {
@@ -103,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      // console.log(subTotal)
+
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
@@ -170,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', moves)
   // Create game board
   const createBoard = () => {
-    // console.log(tiles)
     for (let i = 0; i < width; i++) {
       tiles[i] = []
       tilesArr[i] = []
@@ -180,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         boardDisplay.appendChild(tile)
         tiles[i][j] = tile
         tilesArr[i][j] = 0
-        // console.log(tiles)
       }
     }
   }
@@ -190,7 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
         tiles[i][j].innerHTML = tilesArr[i][j]
-        // console.log(tiles[i][j])
       }
     }
   }
@@ -198,12 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(tilesArr)
   generateTile()
   generateTile()
-  // console.log(tilesArr[0])
+
   renderBoard()
-  generateTile()
-  generateTile()
-  renderBoard()
-  // console.log(tilesArr)
-  // renderBoard()
-  // combineLeft()
 })

@@ -9,46 +9,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const combineUp = () => {
     let nonZeroVal = []
-    for (i = 1; i < width; i++) {
+    for (i = 0; i < width; i++) {
       for (j = 0; j < width; j++) {
-        if (tilesArr[i][j] !== 0) {
-          nonZeroVal.push(tilesArr[i][j])
-          // Find a way to go back up the rows looking at the index as j(same column)
-          //Check for matching number
-          //If theres no number then slap it on the top row
-          for (k = i; k >= 0; k--) {
-            if (tilesArr[k][j] === tilesArr[i][j]) {
-              // console.log(tilesArr[k][j])
-              tilesArr[k][j] += tilesArr[k][j]
-            }
-          }
+        if (tilesArr[j][i] !== 0) {
+          nonZeroVal.push(tilesArr[j][i])
         }
       }
     }
   }
   // Filter rows right to find values then combine
   const combineRight = () => {
-    let total = []
-    let subTotal = []
-
     for (let i = 0; i < width; i++) {
-      for (let j = 0; j < width; j++) {
+      let total = []
+      let subTotal = []
+      for (let j = width - 1; j >= 0; j--) {
         if (tilesArr[i][j] !== 0) {
           total.push(tilesArr[i][j])
         }
       }
+      console.log(total)
       if (total.length === 1) {
-        tilesArr[i] = [0, 0, 0, total[0]]
+        tilesArr[i] = [total[0], 0, 0, 0]
       } else {
-        for (let k = 0; k < total.length; k++) {
+        for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
+            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
+            console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
+            if (total.length === 2) {
+              subTotal.push(total[k])
+            }
           } else if (k === 2 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
             if (total.length > 3) {
               subTotal.push(total[k + 1])
+            }
+          } else if (k === 2 && total[k] !== total[k - 1]) {
+            subTotal.push(total[k - 1])
+            if (total.length === 3) {
+              subTotal.push(total[k])
+            }
+          } else if (k === 3 && total[k] === total[k - 1]) {
+            subTotal.push(total[k] + total[k])
+            if (total.length > 3) {
+              subTotal.push(total[k + 1])
+            }
+          } else if (k === 3 && total[k] !== total[k - 1]) {
+            subTotal.push(total[k - 1])
+            if (total.length === 4) {
+              subTotal.push(total[k])
             }
           }
         }
@@ -57,16 +68,57 @@ document.addEventListener('DOMContentLoaded', () => {
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
+            // console.log(subTotal[o])
             tilesArr[i][o] = subTotal[o]
             // console.log(tilesArr)
           } else {
             tilesArr[i][o] = 0
           }
-          tilesArr[i].reverse()
         }
       }
+
+      tilesArr[i].reverse()
       console.log(tilesArr[i])
     }
+    //   let total = []
+    //   let subTotal = []
+
+    //   for (let i = 0; i < width; i++) {
+    //     for (let j = 0; j < width; j++) {
+    //       if (tilesArr[i][j] !== 0) {
+    //         total.push(tilesArr[i][j])
+    //       }
+    //     }
+    //     if (total.length === 1) {
+    //       tilesArr[i] = [0, 0, 0, total[0]]
+    //     } else {
+    //       for (let k = 0; k < total.length; k++) {
+    //         if (total[k - 1] === total[k]) {
+    //           subTotal.push(total[k] + total[k])
+    //         } else if (k === 1) {
+    //           subTotal.push(total[k - 1])
+    //         } else if (k === 2 && total[k] === total[k - 1]) {
+    //           subTotal.push(total[k] + total[k])
+    //           if (total.length > 3) {
+    //             subTotal.push(total[k + 1])
+    //           }
+    //         }
+    //       }
+    //     }
+
+    //     if (subTotal.length) {
+    //       for (let o = 0; o < tilesArr[i].length; o++) {
+    //         if (subTotal[o] !== undefined) {
+    //           tilesArr[i][o] = subTotal[o]
+    //           // console.log(tilesArr)
+    //         } else {
+    //           tilesArr[i][o] = 0
+    //         }
+    //         tilesArr[i].reverse()
+    //       }
+    //     }
+    //     console.log(tilesArr[i])
+    //   }
   }
   // Filter rows left to find values then combine
 
@@ -82,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
           total.push(tilesArr[i][j])
         }
       }
-
+      console.log(total)
       if (total.length === 1) {
         tilesArr[i] = [total[0], 0, 0, 0]
       } else {
@@ -93,10 +145,28 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (k === 1) {
             console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
+            if (total.length === 2) {
+              subTotal.push(total[k])
+            }
           } else if (k === 2 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
             if (total.length > 3) {
               subTotal.push(total[k + 1])
+            }
+          } else if (k === 2 && total[k] !== total[k - 1]) {
+            subTotal.push(total[k - 1])
+            if (total.length === 3) {
+              subTotal.push(total[k])
+            }
+          } else if (k === 3 && total[k] === total[k - 1]) {
+            subTotal.push(total[k] + total[k])
+            if (total.length > 3) {
+              subTotal.push(total[k + 1])
+            }
+          } else if (k === 3 && total[k] !== total[k - 1]) {
+            subTotal.push(total[k - 1])
+            if (total.length === 4) {
+              subTotal.push(total[k])
             }
           }
         }
@@ -133,6 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(randomNum)
     if (tilesArr[randomNum1][randomNum2] === 0) {
       tilesArr[randomNum1][randomNum2] = 2
+      checkforWin()
       checkGameOver()
     } else generateTile()
   }

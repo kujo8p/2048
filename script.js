@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const boardDisplay = document.querySelector('#board')
   const resultMess = document.querySelector('.result')
+  const playAgainBtn = document.querySelector('button')
 
   const width = 4
   let tiles = []
@@ -11,12 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 1; i < width; i++) {
       for (j = 0; j < width; j++) {
         if (tilesArr[i][j] !== 0) {
+          nonZeroVal.push(tilesArr[i][j])
           // Find a way to go back up the rows looking at the index as j(same column)
           //Check for matching number
           //If theres no number then slap it on the top row
           for (k = i; k >= 0; k--) {
             if (tilesArr[k][j] === tilesArr[i][j]) {
-              console.log(tilesArr[k][j])
+              // console.log(tilesArr[k][j])
               tilesArr[k][j] += tilesArr[k][j]
             }
           }
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   // Filter rows left to find values then combine
+
   const combineLeft = () => {
     // Iterate over every index of each array
     // Inside of this nested for loop
@@ -182,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkGameOver = () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
-        console.log(tilesArr[i][j])
+        // console.log(tilesArr[i][j])
         if (tilesArr[i][j].innerHTML == 2048) {
           resultMess.innerHTML = 'You Win!'
           document.removeEventListener('keydown', moves)
@@ -192,17 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const playAgain = (e) => {
-    document.location.refresh()
+    let btn = document.querySelector('button')
+    btn = window.location.reload()
   }
-  document.addEventListener('click', playAgain)
-  // const addColors = () => {
-  //   for (i = 0; i < tilesArr.length; i++) {
-  //     for (j = 0; j < tilesArr.length; j++) {
-  //       if (tilesArr[i][j] === 2) tilesArr[i][j].style.backgroundColor = 'white'
-  //       else if tilesArr[i][j]
-  //     }
-  //   }
-  // }
+  playAgainBtn.addEventListener('click', playAgain)
+
   createBoard()
 
   console.log(tilesArr)

@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     for (i = 1; i < width; i++) {
       for (j = 0; j < width; j++) {
         if (tilesArr[i][j] !== 0) {
+          // Find a way to go back up the rows looking at the index as j(same column)
+          //Check for matching number
+          //If theres no number then slap it on the top row
           for (k = i; k >= 0; k--) {
             if (tilesArr[k][j] === tilesArr[i][j]) {
               console.log(tilesArr[k][j])
@@ -117,14 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Move Up
 
   // Check for win condition, loss, or generate new tile
-  const checkGameOver = () => {
-    let winner = tilesArr.filter((tile) => tile == 2048)
-    for (let i = 0; i < width; i++) {
-      if (winner === true) {
-        resultMess.innerHTML = 'You Win!'
-      }
-    }
-  }
   // console.log(tilesArr[i][j])
   // Event Listeners
 
@@ -135,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(randomNum)
     if (tilesArr[randomNum1][randomNum2] === 0) {
       tilesArr[randomNum1][randomNum2] = 2
-      // checkGameOver()
+      checkGameOver()
     } else generateTile()
   }
 
@@ -183,7 +178,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
+  const checkGameOver = () => {
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < width; j++) {
+        console.log(tilesArr[i][j])
+        if (tilesArr[i][j].innerHTML == 2048) {
+          resultMess.innerHTML = 'You Win!'
+          document.removeEventListener('keydown', moves)
+        }
+      }
+    }
+  }
+
+  const playAgain = (e) => {
+    document.location.refresh()
+  }
+  document.addEventListener('click', playAgain)
+  // const addColors = () => {
+  //   for (i = 0; i < tilesArr.length; i++) {
+  //     for (j = 0; j < tilesArr.length; j++) {
+  //       if (tilesArr[i][j] === 2) tilesArr[i][j].style.backgroundColor = 'white'
+  //       else if tilesArr[i][j]
+  //     }
+  //   }
+  // }
   createBoard()
+
   console.log(tilesArr)
   generateTile()
   generateTile()

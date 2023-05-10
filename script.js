@@ -183,6 +183,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const checkGameOver = () => {
+    let zeros = 0
+    for (let i = 0; i < width; i++) {
+      for (let j = 0; j < width; j++) {
+        if (tilesArr[i][j] == 0) {
+          zeros++
+        }
+      }
+      if (zeros === 0) {
+        resultMess.innerHTML = 'Game Over'
+        document.removeEventListener('keydown', moves)
+      }
+    }
+  }
+  const checkforWin = () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
         // console.log(tilesArr[i][j])
@@ -194,9 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const playAgain = (e) => {
-    let btn = document.querySelector('button')
-    btn = window.location.reload()
+  const playAgain = () => {
+    window.location.reload()
   }
   playAgainBtn.addEventListener('click', playAgain)
 

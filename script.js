@@ -24,13 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
         tilesArr[1][i] = 0
         tilesArr[0][i] = 0
       } else if (total.length > 1) {
-        console.log(total)
         for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
-            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
-            // console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
             if (total.length === 2) {
               subTotal.push(total[k])
@@ -44,13 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
             subTotal.push(total[k - 1])
             if (total.length === 3) {
               subTotal.push(total[k])
-              console.log(subTotal)
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
             if (total.length > 3) {
               subTotal.push(total[k + 1])
-              console.log(subTotal)
             }
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
@@ -60,23 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      console.log(subTotal)
 
       if (subTotal.length) {
         for (let o = 0; o < width; o++) {
-          // console.log(subTotal[o])
           if (subTotal[o] !== undefined) {
             downSubTotal[o] = subTotal[o]
-            // console.log('undefined', subTotal)
-
-            // subTotal[0] = 0
-            // console.log(subTotal[o])
-            // tilesArr[o][i] = subTotal[o]
-            // console.log(tilesArr)
           }
         }
         downSubTotal.reverse()
-        console.log(downSubTotal)
+
         for (let x = width - 1; x >= 0; x--) {
           tilesArr[x][i] = downSubTotal[x]
         }
@@ -90,28 +77,19 @@ document.addEventListener('DOMContentLoaded', () => {
       for (j = 0; j < width; j++) {
         if (tilesArr[j][i] !== 0) {
           total.push(tilesArr[j][i])
-          console.log(' j ' + j + ' i ' + i + ' ' + tilesArr[j][i])
         }
       }
-      console.log(total.length)
-      if (total.length === 1) {
-        console.log('first condition')
 
+      if (total.length === 1) {
         tilesArr[0][i] = total[0]
         tilesArr[1][i] = 0
         tilesArr[2][i] = 0
         tilesArr[3][i] = 0
-
-        // console.log('messege', tilesArr[j])
       } else if (total.length > 1) {
-        console.log('second condition')
-        // console.log(tilesArr[i][j])
         for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
-            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
-            // console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
             if (total.length === 2) {
               subTotal.push(total[k])
@@ -125,13 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
             subTotal.push(total[k - 1])
             if (total.length === 3) {
               subTotal.push(total[k])
-              console.log(subTotal)
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
             if (total.length > 3) {
               subTotal.push(total[k + 1])
-              console.log(subTotal)
             }
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
@@ -141,19 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
       }
-      console.log(subTotal)
+
       if (subTotal.length) {
         for (let o = 0; o < width; o++) {
           if (subTotal[o] !== undefined) {
-            // console.log(subTotal[o])
             tilesArr[o][i] = subTotal[o]
-            // console.log(tilesArr)
           } else {
             tilesArr[o][i] = 0
           }
         }
       }
-      console.log(tilesArr)
     }
   }
 
@@ -167,16 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
           total.push(tilesArr[i][j])
         }
       }
-      console.log(total)
+
       if (total.length === 1) {
         tilesArr[i] = [total[0], 0, 0, 0]
       } else {
         for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
-            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
-            console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
             if (total.length === 2) {
               subTotal.push(total[k])
@@ -208,9 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
-            // console.log(subTotal[o])
             tilesArr[i][o] = subTotal[o]
-            // console.log(tilesArr)
           } else {
             tilesArr[i][o] = 0
           }
@@ -218,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       tilesArr[i].reverse()
-      console.log(tilesArr[i])
     }
   }
   // Filter rows left to find values then combine
@@ -234,16 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
           total.push(tilesArr[i][j])
         }
       }
-      console.log(total)
+
       if (total.length === 1) {
         tilesArr[i] = [total[0], 0, 0, 0]
       } else {
         for (let k = 1; k < total.length; k++) {
           if (total[k - 1] === total[k]) {
-            // console.log('same', total[k] + total[k])
             subTotal.push(total[k] + total[k])
           } else if (k === 1) {
-            console.log('k===1', total[k - 1])
             subTotal.push(total[k - 1])
             if (total.length === 2) {
               subTotal.push(total[k])
@@ -275,16 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (subTotal.length) {
         for (let o = 0; o < tilesArr[i].length; o++) {
           if (subTotal[o] !== undefined) {
-            // console.log(subTotal[o])
             tilesArr[i][o] = subTotal[o]
-            // console.log(tilesArr)
           } else {
             tilesArr[i][o] = 0
           }
         }
       }
-
-      console.log(tilesArr[i])
     }
   }
 
@@ -293,14 +255,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Move Up
 
   // Check for win condition, loss, or generate new tile
-  // console.log(tilesArr[i][j])
+
   // Event Listeners
 
   // Generate number tiles with value "2"
   const generateTile = () => {
     let randomNum1 = Math.floor(Math.random() * width)
     let randomNum2 = Math.floor(Math.random() * width)
-    // console.log(randomNum)
+
     if (tilesArr[randomNum1][randomNum2] === 0) {
       tilesArr[randomNum1][randomNum2] = 2
       checkforWin()
@@ -347,7 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // console.log(tilesArr)
   const renderBoard = () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
@@ -375,7 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkforWin = () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
-        // console.log(tilesArr[i][j])
         if (tiles[i][j].innerHTML === 2048) {
           resultMess.innerHTML = 'You Win!'
           document.removeEventListener('keydown', moves)
@@ -391,7 +351,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createBoard()
 
-  console.log(tilesArr)
   generateTile()
   generateTile()
 

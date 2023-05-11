@@ -5,13 +5,18 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #e9edda;
+  background-color: #8cb7cf;
 }
 
 h1 {
   margin: 0 auto;
   text-align: center;
   color: black;
+  font-size: 30px;
+}
+
+p {
+  font-size: 20px;
 }
 
 #board {
@@ -23,6 +28,10 @@ h1 {
 }
 
 #board > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100px;
   height: 100px;
   background-color: whitesmoke;
@@ -30,6 +39,12 @@ h1 {
   font-size: 40px;
 }
 
+.result {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+}
+
 button {
-  margin: 2vmin;
+  margin: 0vmin;
 }

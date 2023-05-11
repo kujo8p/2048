@@ -16,6 +16,9 @@
 
 2048 is a fairly simple game based in mathematics. The goal is to merge blocks with corresponding values of various numbers(i.e 2, 4, 8, 16... etc) to ultimatly create a block with the value 2048. You win once you reach this value and you lose once every spot is taken on the board with no more moves availible.
 
+[Imgur](https://i.imgur.com/vsDHsTO.png)
+[Imgur](https://i.imgur.com/ArrScj5.png)
+
 ---
 
 ### _Technologies Used_

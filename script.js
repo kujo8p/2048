@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+  // Move Up
   const combineUp = () => {
     for (i = 0; i < width; i++) {
       let total = []
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
             if (total.length === 4) {
-              subTotal.push(total[k])
+              subTotal.push(total[k + 1])
             }
           }
         }
@@ -129,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
+  // Move Right
   // Filter rows right to find values then combine
   const combineRight = () => {
     for (let i = 0; i < width; i++) {
@@ -250,14 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Move Right
-
-  // Move Up
-
-  // Check for win condition, loss, or generate new tile
-
-  // Event Listeners
-
   // Generate number tiles with value "2"
   const generateTile = () => {
     let randomNum1 = Math.floor(Math.random() * width)
@@ -269,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
       checkGameOver()
     } else generateTile()
   }
+  // Event Listeners
   // Controls for the game movement
   const moves = (e) => {
     if (e.keyCode === 37) {
@@ -350,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
   playAgainBtn.addEventListener('click', playAgain)
 
   createBoard()
-
+  console.log(tilesArr)
   generateTile()
   generateTile()
 

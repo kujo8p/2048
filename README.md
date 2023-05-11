@@ -36,7 +36,7 @@
 
 Fork and clone from the repo above and launch via Live Server to enjoy locally.
 
-[Link](http://127.0.0.1:5500/index.html)
+[Kurt's 2048](http://127.0.0.1:5500/index.html)
 
 Follow this link to reach my welcome page, read the instructions, press "Play Game!", and enjoy!
 
@@ -44,8 +44,8 @@ Follow this link to reach my welcome page, read the instructions, press "Play Ga
 
 ### _Credits_
 
-[Link](https://play2048.co/) - Official 2048 Game Page
+[2048](https://play2048.co/) - Official 2048 Game Page
 
-[Link](https://fonts.google.com/) = Google Fonts
+[Google Fonts](https://fonts.google.com/) = Google Fonts
 
-[Link](https://g.co/kgs/LKFJHF) - Google Color Picker
+[Color Picker](https://g.co/kgs/LKFJHF) - Google Color Picker

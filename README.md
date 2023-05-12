@@ -46,6 +46,6 @@ Follow this link to reach my welcome page, read the instructions, press "Play Ga
 
 [2048](https://play2048.co/) - Official 2048 Game Page
 
-[Google Fonts](https://fonts.google.com/) = Google Fonts
+[Google Fonts](https://fonts.google.com/) - Google Fonts
 
 [Color Picker](https://g.co/kgs/LKFJHF) - Google Color Picker

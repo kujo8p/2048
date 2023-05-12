@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
           total.unshift(tilesArr[j][i])
         }
       }
+      // Specify columns
       if (total.length === 1) {
         total.reverse()
         tilesArr[3][i] = total[0]
@@ -44,14 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
-            if (total.length > 3) {
-              subTotal.push(total[k + 1])
-            }
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
-            if (total.length === 4) {
-              subTotal.push(total[k])
-            }
+
+            subTotal.push(total[k])
           }
         }
       }
@@ -70,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-  // Move Up
+
   const combineUp = () => {
     for (i = 0; i < width; i++) {
       let total = []
@@ -107,14 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
-            if (total.length > 3) {
-              subTotal.push(total[k + 1])
-            }
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
-            if (total.length === 4) {
-              subTotal.push(total[k + 1])
-            }
+
+            subTotal.push(total[k])
           }
         }
       }
@@ -130,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-  // Move Right
+
   // Filter rows right to find values then combine
   const combineRight = () => {
     for (let i = 0; i < width; i++) {
@@ -165,14 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
             subTotal.push(total[k] + total[k])
-            if (total.length > 3) {
-              subTotal.push(total[k + 1])
-            }
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
-            if (total.length === 4) {
-              subTotal.push(total[k])
-            }
+
+            subTotal.push(total[k])
           }
         }
       }
@@ -226,15 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
               subTotal.push(total[k])
             }
           } else if (k === 3 && total[k] === total[k - 1]) {
-            subTotal.push(total[k] + total[k])
-            if (total.length > 3) {
-              subTotal.push(total[k + 1])
-            }
+            subTotal.push(total[k] + total[k - 1])
           } else if (k === 3 && total[k] !== total[k - 1]) {
             subTotal.push(total[k - 1])
-            if (total.length === 4) {
-              subTotal.push(total[k])
-            }
+
+            subTotal.push(total[k])
           }
         }
       }
@@ -250,6 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
+
+  // Move Right
+
+  // Move Up
+
+  // Check for win condition, loss, or generate new tile
 
   // Generate number tiles with value "2"
   const generateTile = () => {
@@ -330,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkforWin = () => {
     for (let i = 0; i < width; i++) {
       for (let j = 0; j < width; j++) {
-        if (tiles[i][j].innerHTML === 2048) {
+        if (tiles[i][j].innerHTML === '2048') {
           resultMess.innerHTML = 'You Win!'
           document.removeEventListener('keydown', moves)
         }
@@ -344,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
   playAgainBtn.addEventListener('click', playAgain)
 
   createBoard()
-  console.log(tilesArr)
+
   generateTile()
   generateTile()
 

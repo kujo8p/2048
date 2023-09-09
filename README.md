@@ -36,7 +36,7 @@
 
 Fork and clone from the repo above and launch via Live Server to enjoy locally.
 
-[Kurt's 2048](http://127.0.0.1:5500/index.html)
+[Kurt's 2048]((https://2048gamekurt.surge.sh/game.html))
 
 Follow this link to reach my welcome page, read the instructions, press "Play Game!", and enjoy!
 
